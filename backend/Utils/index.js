@@ -1,0 +1,10 @@
+const dotenv = require('dotenv');
+dotenv.config();
+const express = require('express');
+// const session= require('express-session');
+const connect =require('../config/Db');
+const app = express();
+const PORT =3001;
+app.use(express.json());
+app.listen(PORT);
+connect();
