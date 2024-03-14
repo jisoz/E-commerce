@@ -16,7 +16,7 @@ display: flex;
 justify-content: center;
 align-items: center;
 background-color: red;
-padding: 50px;
+padding: 20px;
 
 `
 
@@ -24,7 +24,8 @@ export const CenterContainer = styled.nav`
 
 flex:59%;
 display: flex;
-justify-content: flex-end;
+justify-content: center;
+align-items: center;
 background-color: blue;
 
 `
@@ -34,10 +35,54 @@ flex:10%;
 display: flex;
 justify-content: flex-end;
 background-color: rebeccapurple;
+padding-right: 25px;
 
 `
 export const Logo = styled.img`
-width: 100px;
+width: 70px;
 
 
 `
+export const Ul = styled.ul`
+list-style: none;
+padding: 0;
+align-items: center;
+display: flex;
+
+`
+export const Li = styled.li`
+padding-left: 40px;
+font-weight: bold;
+
+
+
+`
+ export const Icon = styled.div`
+  display: inline-flex;
+  padding-left: 13px;
+  align-items: center;
+  justify-content: center;
+  font-size: ${props => props.size || '18px'};
+  color: ${props => props.color || 'black'};
+`;
+
+export const StyledLink = styled.a`
+  position: relative;
+  color: #333;
+  text-decoration: none;
+  cursor: pointer;
+  &::after {
+    content: '';
+    position: absolute;
+    left: 0;
+    bottom: -2px;
+    width: 0;
+    height: 2px;
+    background-color: #333;
+    transition: width 0.5s ease; 
+  }
+
+  &:hover::after {
+    width: 100%;
+  }
+`;
