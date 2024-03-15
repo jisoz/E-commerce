@@ -1,0 +1,28 @@
+When a user logs in, the server generates a JWT for that user 
+using the secret key. The JWT contains information about the user 
+(such as their username or user ID) and is signed using the secret key. When the
+ user sends subsequent requests to the server, they include this JWT in the request, typically in the 
+ Authorization header.
+
+The server receives the JWT, verifies the 
+signature using the secret key, and extracts the user's information from the 
+token. If the signature is valid, the server considers the user authenticated and 
+processes the request accordingly.
+
+User Authentication:
+
+When a user logs in, the server generates a JWT containing the user's ID or other identifying information.
+This JWT is signed using a secret key known only to the server. This signature ensures that the token hasn't been tampered with.
+Token Sent to Client:
+
+The server sends the JWT back to the client, typically as a response to the login request.
+The client receives the JWT and stores it, usually in local storage or a cookie.
+Subsequent Requests:
+
+For subsequent requests that require authentication, the client includes the JWT in the request, typically in the Authorization header.
+The server receives the JWT, verifies the signature using the secret key, and extracts the user's ID or other information from the token.
+If the signature is valid, the server considers the user authenticated and processes the request.
+Expiration and Refresh:
+
+JWTs can have an expiration time (exp claim) to limit their lifespan. After expiration, the token is no longer valid.
+To handle expiration, the client can request a new JWT using a refresh token or by re-authenticating.
