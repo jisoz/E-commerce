@@ -1,11 +1,13 @@
 import styled from "styled-components"
 export const NavbarContainer = styled.nav`
-
 width: 100%;
 height: 80px;
-background-color: black;
+background-color: ${({ scrolled }) => (scrolled ? 'rgba(0, 0, 0, 0.5)' : 'transparent')};
 display: flex;
+position: fixed;
 flex-direction: row;
+padding-top:20px;
+z-index: 1000;
 
 
 `
@@ -15,7 +17,7 @@ flex:1%;
 display: flex;
 justify-content: center;
 align-items: center;
-background-color: red;
+/* background-color: red; */
 padding: 20px;
 
 `
@@ -26,7 +28,7 @@ flex:59%;
 display: flex;
 justify-content: center;
 align-items: center;
-background-color: blue;
+/* background-color: blue; */
 
 `
 export const RightContainer = styled.nav`
@@ -34,12 +36,12 @@ export const RightContainer = styled.nav`
 flex:10%;
 display: flex;
 justify-content: flex-end;
-background-color: rebeccapurple;
+/* background-color: rebeccapurple; */
 padding-right: 25px;
 
 `
 export const Logo = styled.img`
-width: 70px;
+width: 80px;
 
 
 `
@@ -49,10 +51,12 @@ padding: 0;
 align-items: center;
 display: flex;
 
+
 `
 export const Li = styled.li`
 padding-left: 40px;
 font-weight: bold;
+
 
 
 
@@ -62,13 +66,14 @@ font-weight: bold;
   padding-left: 13px;
   align-items: center;
   justify-content: center;
+  cursor: pointer;
   font-size: ${props => props.size || '18px'};
   color: ${props => props.color || 'black'};
 `;
 
 export const StyledLink = styled.a`
   position: relative;
-  color: #333;
+  color: white;
   text-decoration: none;
   cursor: pointer;
   &::after {
@@ -78,7 +83,7 @@ export const StyledLink = styled.a`
     bottom: -2px;
     width: 0;
     height: 2px;
-    background-color: #333;
+    background-color: white;
     transition: width 0.5s ease; 
   }
 
