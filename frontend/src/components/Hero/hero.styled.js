@@ -51,3 +51,16 @@ top: 60px;
 
 `
 
+export const Ferphoto=styled.img`
+ 
+ max-width: 100%;
+ /* max-height: 100%; */
+width:300px;
+height:370px;
+border-radius: 20px;
+position:absolute;
+right:340px;
+top: 280px;
+
+`
+

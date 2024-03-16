@@ -1,6 +1,6 @@
 import {react} from 'react';
 import {Container} from '../container.styled';
-import {Headsection,Headnav,Mainnav,Girlphoto,Setphoto} from "./hero.styled";
+import {Headsection,Headnav,Mainnav,Girlphoto,Setphoto,Ferphoto} from "./hero.styled";
 const Hero=()=>{
     return (
         <>
@@ -10,6 +10,7 @@ const Hero=()=>{
         <Mainnav>Playful, elegant and customizable.</Mainnav>
         <Girlphoto src="https://theme-next-brandstore.myshopify.com/cdn/shop/files/Headphone_Moment_2022_Beoplay_HX_Digital_English_0001_CRM_1.png?v=1697808905&amp;width=768"/>
         <Setphoto src="https://theme-next-brandstore.myshopify.com/cdn/shop/files/Headphone_Moment_2022_Beoplay_HX_0004.png?pad_color=fff&v=1697808862&width=165"></Setphoto>
+        <Ferphoto src="https://theme-next-brandstore.myshopify.com/cdn/shop/files/Headphone_Moment_2022_Beoplay_HX_Digital_English_0001_CRM.png?pad_color=fff&v=1697808791&width=165"></Ferphoto>
         </Headsection>
         
         

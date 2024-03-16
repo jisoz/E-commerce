@@ -74,6 +74,8 @@ font-weight: bold;
 export const StyledLink = styled.a`
   position: relative;
   color: white;
+  font-weight: bold;
+  font-size: 17px;
   text-decoration: none;
   cursor: pointer;
   &::after {
