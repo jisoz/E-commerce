@@ -2,7 +2,7 @@ import styled from "styled-components"
 export const NavbarContainer = styled.nav`
 width: 100%;
 height: 80px;
-background-color: ${({ scrolled }) => (scrolled ? 'rgba(0, 0, 0, 0.5)' : 'transparent')};
+background-color: ${({ scrolled }) => (scrolled == 'true' ? 'rgba(0, 0, 0, 0.5)' : 'transparent')};
 display: flex;
 position: fixed;
 flex-direction: row;
@@ -68,7 +68,7 @@ font-weight: bold;
   justify-content: center;
   cursor: pointer;
   font-size: ${props => props.size || '18px'};
-  color: ${props => props.color || 'black'};
+  color: ${props => props.color || 'white'};
 `;
 
 export const StyledLink = styled.a`
@@ -93,3 +93,23 @@ export const StyledLink = styled.a`
     width: 100%;
   }
 `;
+
+
+export const Btnup = styled.button`
+
+background-color: gray;
+width: 50px;
+height:50px;
+border-radius: 50%;
+border: none;
+position: fixed;
+bottom: 0;
+right: 0;
+display: ${({scrolled})=>(scrolled == 'true' ? "block" : "none")};
+margin-right:30px;
+margin-bottom: 30px;
+transition: opacity 0.9s ease;
+cursor: pointer;
+
+
+` 

@@ -1,24 +1,42 @@
 import {React,useEffect,useState} from 'react';
-import {NavbarContainer,LeftContainer,RightContainer,CenterContainer,Logo,Ul,Li,Icon,StyledLink} from './Navbar.style'
+import {NavbarContainer,LeftContainer,RightContainer,CenterContainer,Logo,Ul,Li,Icon,StyledLink,Btnup} from './Navbar.style'
 import { Link } from 'react-router-dom';
-import { FaSun, FaUser, FaSearch, FaShoppingCart } from 'react-icons/fa';
+import { FaSun, FaUser, FaSearch, FaShoppingCart,FaArrowUp, FaMoon } from 'react-icons/fa';
+import {useDispatch, useSelector } from 'react-redux';
+import { toggleDarmode } from '../../redux/features/darkmodeSlice';
  const Navbar =()=>{
     const [scrolled, setScrolled] = useState(false);
-    
-
-    const changebackgroud=()=>{
+    const [btnappear , setbtnappear] = useState(false);
+    const isDarkMode = useSelector(state => state.darkmode.isDarkMode);
+    const dispatch = useDispatch();
+    console.log(isDarkMode)
+    const scrollchanges=()=>{
         if (window.scrollY >=20){
             setScrolled(true);
         }else {
             setScrolled(false);
         }
+
+        if (window.scrollY>=100){
+            setbtnappear(true);
+        }else{
+            setbtnappear(false);
+        }
     }
-    window.addEventListener('scroll',changebackgroud)
+    window.addEventListener('scroll',scrollchanges)
     
 
+    const GoUp = ()=>{
+        window.scrollTo({
+            top: 0,
+            behavior: "smooth" 
+          });
+    }
+
+   
     return(
         
-        <NavbarContainer scrolled = {scrolled}>
+        <NavbarContainer scrolled = {scrolled.toString()}>
          <LeftContainer>
          <Link to="/"><Logo src="https://theme-next-brandstore.myshopify.com/cdn/shop/files/Logo_nxt_transparant_header.svg?pad_color=fff&v=1688037844&width=350"></Logo></Link>
          </LeftContainer>
@@ -31,23 +49,28 @@ import { FaSun, FaUser, FaSearch, FaShoppingCart } from 'react-icons/fa';
           </Ul>
          </CenterContainer>
          <RightContainer>
-         <Icon>
-         <FaSun  style={{ color: 'white' }}></FaSun>
+         <Icon onClick={() => dispatch(toggleDarmode())}>
+         {isDarkMode ? <FaMoon/> : <FaSun></FaSun> }
+         
          </Icon>
          <Icon>
-         <FaSearch  style={{ color: 'white' }}></FaSearch>
+         <FaSearch ></FaSearch>
         
          </Icon>
          <Icon>
-         <FaUser  style={{ color: 'white' }}></FaUser>
+         <FaUser></FaUser>
          </Icon>
          <Icon>
-         <FaShoppingCart  style={{ color: 'white' }}></FaShoppingCart>
+         <FaShoppingCart ></FaShoppingCart>
        
          </Icon>
        
          
          </RightContainer>
+
+         <Btnup scrolled={btnappear.toString()} onClick={GoUp}>
+         <FaArrowUp style={{color: 'white'} }></FaArrowUp>
+         </Btnup>
         </NavbarContainer>
 
     ) 
