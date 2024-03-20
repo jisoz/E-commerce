@@ -9,7 +9,6 @@ import { toggleDarmode } from '../../redux/features/darkmodeSlice';
     const [btnappear , setbtnappear] = useState(false);
     const isDarkMode = useSelector(state => state.darkmode.isDarkMode);
     const dispatch = useDispatch();
-    console.log(isDarkMode)
     const scrollchanges=()=>{
         if (window.scrollY >=20){
             setScrolled(true);
@@ -38,7 +37,11 @@ import { toggleDarmode } from '../../redux/features/darkmodeSlice';
         
         <NavbarContainer scrolled = {scrolled.toString()}>
          <LeftContainer>
-         <Link to="/"><Logo src="https://theme-next-brandstore.myshopify.com/cdn/shop/files/Logo_nxt_transparant_header.svg?pad_color=fff&v=1688037844&width=350"></Logo></Link>
+         <Link to="/">
+            {isDarkMode ? <Logo src="https://theme-next-brandstore.myshopify.com/cdn/shop/files/Theme_Next_-_Logo_DEF.svg?pad_color=fff&v=1688037757&width=350 "></Logo> :             <Logo src="https://theme-next-brandstore.myshopify.com/cdn/shop/files/Logo_nxt_transparant_header.svg?pad_color=fff&v=1688037844&width=350"></Logo>}
+
+            
+        </Link>
          </LeftContainer>
          <CenterContainer>
          <Ul>

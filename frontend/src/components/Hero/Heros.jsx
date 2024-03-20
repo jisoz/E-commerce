@@ -2,11 +2,10 @@ import { useSelector } from 'react-redux';
 import {Container} from '../container.styled';
 import {Headsection,Headnav,Mainnav,Girlphoto,Setphoto,Ferphoto} from "./hero.styled";
 const Hero=()=>{
-    const isDarkMode = useSelector(state => state.darkmode.isDarkMode);
 
     return (
         <>
-        <Container width="50vw" height="170vh" position="absolute" top="0" isdarkmode={isDarkMode.toString()}></Container>
+        <Container width="50vw" height="170vh" position="absolute" top="0" ></Container>
         <Headsection>
         <Headnav>Beoplay HX</Headnav>
         <Mainnav>Playful, elegant and customizable.</Mainnav>

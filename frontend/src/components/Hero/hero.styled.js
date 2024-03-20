@@ -11,12 +11,12 @@ width: 490px;
 `
 
 export const Headnav=styled.nav`
- color: whitesmoke;
+ color: ${({ theme }) => theme.text};
  font-family: Arial, Helvetica, sans-serif;
 
 `
 export const Mainnav=styled.nav`
- color: white;
+ color:${({ theme }) => theme.text} ;
  font-weight: bold;
  margin-top:20px;
  font-size: 46px;
