@@ -4,6 +4,7 @@ import { Link } from 'react-router-dom';
 import { FaSun, FaUser, FaSearch, FaShoppingCart,FaArrowUp, FaMoon } from 'react-icons/fa';
 import {useDispatch, useSelector } from 'react-redux';
 import { toggleDarmode } from '../../redux/features/darkmodeSlice';
+import { togglelogin } from '../../redux/features/FormloginSlice';
  const Navbar =()=>{
     const [scrolled, setScrolled] = useState(false);
     const [btnappear , setbtnappear] = useState(false);
@@ -61,7 +62,7 @@ import { toggleDarmode } from '../../redux/features/darkmodeSlice';
         
          </Icon>
          <Icon>
-         <FaUser></FaUser>
+         <FaUser onClick={()=>dispatch(togglelogin())}></FaUser>
          </Icon>
          <Icon>
          <FaShoppingCart ></FaShoppingCart>

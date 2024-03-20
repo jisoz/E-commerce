@@ -41,9 +41,15 @@ const loginUser = asyncHandler((async(req ,res) => {
        const isvalidpassword=comparePassword(password, existingUser.password);
        if (isvalidpassword){
         creatToken(res,existingUser._id);
-        res.send("welcome back")
+        res.status(201).json({
+          _id:existingUser._id,
+          username:existingUser.username,
+          email:existingUser.email,
+          isAdmin:existingUser.isAdmin,
+        })
+        return;
        }
-    }
+    } 
     
 }))
 

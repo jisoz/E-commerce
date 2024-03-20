@@ -19,14 +19,16 @@ const lightTheme = {
   body: '#efae45',
   text: '#ffff',
   global:"#3e3737",
-  nav:"rgba(0, 0, 0, 0.5)"
+  nav:"rgba(0, 0, 0, 0.5)",
+  login: '#020101',
 };
 
 const darkTheme = {
   body: '#fcf9f1',
   text: '#020101',
   global:'#ffffff',
-  nav:'rgba(208, 207, 208, 0.5)'
+  nav:'rgba(208, 207, 208, 0.5)',
+  login: '#ffff'
 
 };
 
