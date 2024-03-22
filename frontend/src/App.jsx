@@ -3,6 +3,9 @@ import Home from './pages/Home'
 import { ThemeProvider } from 'styled-components';
 import { useSelector } from 'react-redux';
 import { createGlobalStyle } from 'styled-components';
+import { ToastContainer } from 'react-toastify';
+import Register from './components/Register/register';
+import 'react-toastify/dist/ReactToastify.css';
 
 const GlobalStyles = createGlobalStyle`
   body {
@@ -32,6 +35,8 @@ const darkTheme = {
 
 };
 
+
+
 function App() {
 
   const isDarkMode = useSelector(state => state.darkmode.isDarkMode);
@@ -40,10 +45,15 @@ function App() {
   return (
     <ThemeProvider theme={theme}>
       <GlobalStyles/>
+      <ToastContainer/>
    <BrowserRouter>
    <Routes>
     <Route path='/' element={<Home />}>
+
     </Route>
+    <Route path='/register' element={<Register />}>
+      
+      </Route>
     
    </Routes>
    </BrowserRouter>

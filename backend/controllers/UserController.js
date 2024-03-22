@@ -10,7 +10,8 @@ const createUser = asyncHandler(async(req,res)=>{
     }
     const userExists = await User.findOne({email}) 
     if (userExists) {
-        return  res.status(400).send("User already exists");
+        res.status(400).json({message:"User already exists"});
+        throw new Error("User already exists");
     }
     
    const hash= await hashPassword(password)
@@ -19,11 +20,16 @@ const createUser = asyncHandler(async(req,res)=>{
     try {
         await newUser.save();
         creatToken(res,newUser._id);
-        return  res.status(201).send("User created successfully");
+        return   res.status(201).json({
+          _id:newUser._id,
+          username:newUser.username,
+          email:newUser.email,
+          isAdmin:newUser.isAdmin,
+        })
 
     }catch(err){
-        return  res.status(400).send("Invalid user data");
-       
+         res.status(400).json({message:"Invalid user data"});
+        
 
 
 
@@ -50,12 +56,12 @@ const loginUser = asyncHandler((async(req ,res) => {
         return;
        }
     } 
-    
+    throw new Error('Invalid email or password');
 }))
 
 const loginoutUser = asyncHandler(async(req,res)=>{
     res.cookie('jwt', '', {httpOnly: true, expires: new Date(0),});
-    return res.status(200).send("logout successfully");
+    return res.status(200).json({message: "logged out successfully"});
 })
 
 // const getAllUsers = asyncHandler(async(req,res)=>{

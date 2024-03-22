@@ -1,53 +1,21 @@
 import styled ,{ keyframes } from "styled-components";
-import { Link } from 'react-router-dom';
+export const SpanError = styled.span`
+color:red;
 
-export const Divreg = styled.div`
-
-
-`;
-export  const StyledLink = styled(Link)`
- 
-  color: #efae45;
-  font-weight: bold;
-  margin-left:5px;
- 
-`;
-
-
+`
 export const Maindiv = styled.div`
-   position: fixed;
-   height: 600px;
-   z-index: 1000;
-  /* left: -100%; Start off-screen */
-   right: ${({ isloginformopen , isloged  }) => (isloginformopen =="true" && isloged =="false" ? '0' : '-100%')};
-  top: 0;
-  background-color: ${({theme})=>theme.login};
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  border-radius: 20px;
+  transform: translate(-50%, -50%);
+  height: 600px;
+  z-index: 1000;
+  background-color: ${({ theme }) => theme.login};
   width: 520px;
   padding: 30px;
   transition: right 0.5s ease-in-out;
- 
-
-
-
-`
-export const Maindivtwo = styled.div`
-   position: fixed;
-   height: 200px;
-   z-index: 1000;
-  /* left: -100%; Start off-screen */
-   right: ${({ isloginformopen , isloged  }) => (isloginformopen =="false" && isloged =="true" ? '0' : '-100%')};
-  top: 0;
-  margin-top: 100px;
-  background-color: #2b2626;
-  width: 200px;
-  padding: 30px;
-  transition: right 0.3s ease-in-out;
-  border-radius: 20px;
- 
-
-
-
-`
+`;
 export const Ifadmin  = styled.div`
 color:white;
 /* display: flex;
@@ -99,7 +67,6 @@ color:${({theme})=>theme.text};
 margin-top: 15px;
 font-size: 15px;
 padding-bottom: 40px;
-display: flex;
 
 
 `
@@ -112,7 +79,7 @@ export const Form=styled.form `
 export const Inputdiv=styled.div `
 
 
-
+  position: relative;
 
 `
 
@@ -133,8 +100,10 @@ export const Input=styled.input `
   caret-color:#efae45;
   border-color: #efae45;
   color: black;
+  font-size: 16px;
   &:focus {
     outline: none; 
+    caret-color: #d49e35;
   }
 
 `
@@ -173,7 +142,14 @@ transition: transform 0.3s;
 
 `
 
+export const Iconcheck=styled.div`
+position: absolute;
+top: 50px;
+right:18px;
+color:green;
+font-size: 22px;
 
+`
 
 export const Icon = styled.div`
 
