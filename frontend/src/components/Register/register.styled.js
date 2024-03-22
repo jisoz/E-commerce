@@ -1,6 +1,7 @@
 import styled ,{ keyframes } from "styled-components";
 export const SpanError = styled.span`
 color:red;
+font-size: 14px;
 
 `
 export const Maindiv = styled.div`
@@ -125,13 +126,13 @@ justify-content: center;
 export const  BtnSign=styled.button`
 
 background-color: #efae45;
-border-radius:0;
+border-radius:20px;
 color: white;
 border: none;
 padding: 15px ;
 cursor: pointer;
 font-size: 17px;
-margin-top: 30px;
+margin-top: 18px;
 width: 130px;
 transition: transform 0.3s; 
 &:hover{
@@ -146,6 +147,14 @@ export const Iconcheck=styled.div`
 position: absolute;
 top: 50px;
 right:18px;
+color:green;
+font-size: 22px;
+
+`
+export const Iconcheckpass=styled.div`
+position: absolute;
+top: 50px;
+right:37px;
 color:green;
 font-size: 22px;
 

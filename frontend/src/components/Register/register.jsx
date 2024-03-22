@@ -1,6 +1,6 @@
 import React, { useState } from 'react'
 import { Container } from '../container.styled'
-import { Maindiv,Parg ,Par,Form,Input,Inputdiv,P,Span,Sign,BtnSign,SpanError,Iconcheck} from "./register.styled"
+import { Maindiv,Parg ,Par,Form,Input,Inputdiv,P,Span,Sign,BtnSign,SpanError,Iconcheck, Iconcheckpass} from "./register.styled"
 import { useDispatch , useSelector } from 'react-redux'
 
 
@@ -31,7 +31,8 @@ const Register = () => {
     
     const validatePassword = (password) => {
      
-      return password.length >= 6;
+      const regex = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[!@#$%^&*])[A-Za-z\d!@#$%^&*]{8,}$/;
+      return regex.test(password);
     };
     
     const validateUsername = (username) => {
@@ -51,7 +52,7 @@ const Register = () => {
     const handlePasswordChange = (e) => {
       setpassword(e.target.value);
       if (!validatePassword(e.target.value)) {
-        setPasswordError("Password must be at least 6 characters");
+        setPasswordError("Password must be at least 8 characters long and include at least one uppercase letter, one lowercase letter, one digit, and one special character (e.g., !@#$%^&*)");
       } else {
         setPasswordError("");
       }
@@ -110,6 +111,7 @@ const Register = () => {
             <P>Password<Span>*</Span></P>
             <Input type='password' required value={password} onChange={handlePasswordChange} />
             {passwordError && <SpanError>{passwordError}</SpanError>}
+            {password && passwordError =="" && <Iconcheckpass><FaCheck></FaCheck></Iconcheckpass>}
             </Inputdiv>
             <Sign>
             <BtnSign disabled={isLoading} type='submit' onClick={handleSubmit}>{isLoading ? "Registering..." :"Register" }</BtnSign>
