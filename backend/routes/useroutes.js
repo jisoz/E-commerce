@@ -10,4 +10,5 @@ router.post("/auth",loginUser)
 router.post("/logout",loginoutUser)
 router.route("/profile").get(authenticate, getCurrentUserProfile).put(authenticate,updateCurrentUserProfile)
 router.route("/:id").delete(authenticate, authorizeAdmin, deleteUserById).get(authenticate, authorizeAdmin, getUserById).put(authenticate,authorizeAdmin,UpdateUserById)
+router.route("/reset-password").post()
 module.exports = router;

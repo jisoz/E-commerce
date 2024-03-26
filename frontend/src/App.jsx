@@ -6,6 +6,7 @@ import { createGlobalStyle } from 'styled-components';
 import { ToastContainer } from 'react-toastify';
 import Register from './components/Register/register';
 import 'react-toastify/dist/ReactToastify.css';
+import Reset from './pages/Reset';
 
 const GlobalStyles = createGlobalStyle`
   body {
@@ -38,7 +39,6 @@ const darkTheme = {
 
 
 function App() {
-
   const isDarkMode = useSelector(state => state.darkmode.isDarkMode);
   const theme = isDarkMode ? darkTheme : lightTheme;
 
@@ -46,12 +46,16 @@ function App() {
     <ThemeProvider theme={theme}>
       <GlobalStyles/>
       <ToastContainer/>
-   <BrowserRouter>
+   <BrowserRouter>  
    <Routes>
     <Route path='/' element={<Home />}>
 
     </Route>
     <Route path='/register' element={<Register />}>
+      
+      </Route>
+
+      <Route path='/reset-password' element={<Reset />}>
       
       </Route>
     

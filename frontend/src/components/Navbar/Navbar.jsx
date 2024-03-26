@@ -5,10 +5,11 @@ import { FaSun, FaUser, FaSearch, FaShoppingCart,FaArrowUp, FaMoon } from 'react
 import {useDispatch, useSelector } from 'react-redux';
 import { toggleDarmode } from '../../redux/features/darkmodeSlice';
 import { togglelogin } from '../../redux/features/FormloginSlice';
- const Navbar =()=>{
+ const Navbar =({ homepage })=>{
     const [scrolled, setScrolled] = useState(false);
     const [btnappear , setbtnappear] = useState(false);
     const isDarkMode = useSelector(state => state.darkmode.isDarkMode);
+    const isloginclick = useSelector((state)=>state.loginclick.isLoginclick);
     const dispatch = useDispatch();
     const scrollchanges=()=>{
         if (window.scrollY >=20){
@@ -36,7 +37,7 @@ import { togglelogin } from '../../redux/features/FormloginSlice';
    
     return(
         
-        <NavbarContainer scrolled = {scrolled.toString()}>
+        <NavbarContainer scrolled = {scrolled.toString()} isloginclick={isloginclick.toString()  } homepage={homepage} >
          <LeftContainer>
          <Link to="/">
             {isDarkMode ? <Logo src="https://theme-next-brandstore.myshopify.com/cdn/shop/files/Theme_Next_-_Logo_DEF.svg?pad_color=fff&v=1688037757&width=350 "></Logo> :             <Logo src="https://theme-next-brandstore.myshopify.com/cdn/shop/files/Logo_nxt_transparant_header.svg?pad_color=fff&v=1688037844&width=350"></Logo>}

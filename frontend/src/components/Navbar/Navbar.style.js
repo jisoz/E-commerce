@@ -2,12 +2,26 @@ import styled from "styled-components"
 export const NavbarContainer = styled.nav`
 width: 100%;
 height: 80px;
-background-color: ${({ scrolled ,theme }) => (scrolled == 'true'  ? theme.nav : 'transparent')};
+/* background-color: ${({ scrolled ,theme }) => (scrolled == 'true'  ? theme.nav : 'transparent')}; */
+background-color: ${({ scrolled, theme, homepage }) => {
+    if (homepage && scrolled=="false") {
+      return "transparent"; 
+    } else if (homepage && scrolled=="true") {
+      return theme.nav;
+    } else if(!homepage && scrolled=="false") {
+       return "black"
+    } else if (!homepage && scrolled=="true") {
+       return theme.nav;
+    }
+  }};
 display: flex;
 position: fixed;
 flex-direction: row;
+top: 0;
+left: 0;
 padding-top:20px;
 z-index: 1000;
+opacity: ${({ isloginclick}) =>isloginclick== 'true' ? '0.34' :'1' };
 
 
 `

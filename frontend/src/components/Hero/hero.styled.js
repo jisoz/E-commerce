@@ -5,6 +5,7 @@ export const Headsection=styled.div`
  top: 360px;
  left: 170px;
 width: 490px;
+opacity: ${({ isloginclick}) =>isloginclick== 'true' ? '0.34' :'1' };
 /* background-color: red; */
 
 

@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react'
 
-import { Maindiv,Parg ,Par,Form,Input,Inputdiv,P,Span,Sign,BtnSign,Icon,Maindivtwo,Ifadmin,IfadminBtn,Ifadminp, Icontwo,Divreg,StyledLink} from './login.styled'
+import { Maindiv,Parg ,Par,Form,Input,Inputdiv,P,Span,Sign,BtnSign,Icon,Maindivtwo,Ifadmin,IfadminBtn,Ifadminp, Icontwo,Divreg,StyledLink,StyledLinktwo} from './login.styled'
 import { FaTimes ,FaUserCircle} from 'react-icons/fa'
 import { useDispatch , useSelector } from 'react-redux'
 import { togglelogin } from '../../redux/features/FormloginSlice';
@@ -88,7 +88,14 @@ return (
                 to="/register"
               >
                Register
-              </StyledLink></Par>
+              </StyledLink>
+              <StyledLinktwo
+                to="/reset-password"
+                onClick={()=>dispatch(togglelogin())}
+              >
+               Forgot password ?
+              </StyledLinktwo>
+              </Par>
         <Sign>
           <BtnSign disabled={isLoading } type='submit' onClick={handleSubmit}>{isLoading    ? "Signing In..." : "Sign In"}</BtnSign>
         </Sign>

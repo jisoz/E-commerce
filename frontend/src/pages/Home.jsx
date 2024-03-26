@@ -4,9 +4,10 @@ import Heros from '../components/Hero/Heros';
 import Login from '../components/Login/Login';
 
 const Home = ()=>{
+   
     return(<>
       
-        <Navbar></Navbar>
+        <Navbar homepage={true}></Navbar>
          <Heros></Heros>
          <Login></Login>
 

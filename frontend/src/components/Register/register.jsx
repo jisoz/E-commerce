@@ -1,9 +1,9 @@
 import React, { useState } from 'react'
 import { Container } from '../container.styled'
-import { Maindiv,Parg ,Par,Form,Input,Inputdiv,P,Span,Sign,BtnSign,SpanError,Iconcheck, Iconcheckpass} from "./register.styled"
+import { Maindiv,Parg ,Par,Form,Input,Inputdiv,P,Span,Sign,BtnSign,SpanError,Iconcheck, Iconcheckpass,Divreg,StyledLink} from "./register.styled"
 import { useDispatch , useSelector } from 'react-redux'
 
-
+import { togglelogin } from '../../redux/features/FormloginSlice';
 import { setCredentials } from '../../redux/features/auth/authSlice';
 import {  useRegisterMutation } from '../../redux/api/usersApiSlice';
 import { useLocation, useNavigate } from 'react-router-dom';
@@ -113,6 +113,15 @@ const Register = () => {
             {passwordError && <SpanError>{passwordError}</SpanError>}
             {password && passwordError =="" && <Iconcheckpass><FaCheck></FaCheck></Iconcheckpass>}
             </Inputdiv>
+            <Par> 
+         <Divreg>Have an account?</Divreg>
+          <StyledLink
+                 onClick={() => {
+                  navigate(-1)
+                }}
+              >
+               Login
+              </StyledLink></Par>
             <Sign>
             <BtnSign disabled={isLoading} type='submit' onClick={handleSubmit}>{isLoading ? "Registering..." :"Register" }</BtnSign>
             </Sign>

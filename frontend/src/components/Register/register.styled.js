@@ -1,4 +1,5 @@
 import styled ,{ keyframes } from "styled-components";
+import { Link } from 'react-router-dom';  
 export const SpanError = styled.span`
 color:red;
 font-size: 14px;
@@ -67,8 +68,8 @@ export const Par=styled.p `
 color:${({theme})=>theme.text};
 margin-top: 15px;
 font-size: 15px;
-padding-bottom: 40px;
-
+display: flex;
+font-size: 14px;
 
 `
 
@@ -132,7 +133,7 @@ border: none;
 padding: 15px ;
 cursor: pointer;
 font-size: 17px;
-margin-top: 18px;
+margin-top: 6px;
 width: 130px;
 transition: transform 0.3s; 
 &:hover{
@@ -142,7 +143,19 @@ transition: transform 0.3s;
 }
 
 `
+export const Divreg = styled.div`
 
+
+`;
+export  const StyledLink = styled.div`
+ 
+  color: #efae45;
+  font-weight: bold;              
+  margin-left:5px;
+  cursor: pointer;
+  text-decoration: underline;
+ 
+`;
 export const Iconcheck=styled.div`
 position: absolute;
 top: 50px;

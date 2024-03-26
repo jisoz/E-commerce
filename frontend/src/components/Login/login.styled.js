@@ -13,6 +13,14 @@ export  const StyledLink = styled(Link)`
  
 `;
 
+export  const StyledLinktwo = styled(Link)`
+ 
+  color: #efae45;
+  
+  margin-left:200px;
+ 
+`;
+
 
 export const Maindiv = styled.div`
    position: fixed;
@@ -24,7 +32,7 @@ export const Maindiv = styled.div`
   background-color: ${({theme})=>theme.login};
   width: 520px;
   padding: 30px;
-  transition: right 0.5s ease-in-out;
+  transition: right 0.3s ease-in-out;
  
 
 
