@@ -1,4 +1,5 @@
 import React, { useState, useRef } from "react";
+import { useSelector } from "react-redux";
 import styled from "styled-components";
 
 const Container = styled.div`
@@ -73,6 +74,7 @@ const Button = styled.button`
 const OTPForm = () => {
   const [active, setActive] = useState(false);
   const [otpCode, setOtpCode] = useState("");
+  const globalotp=useSelector((state)=>state.otpcode.otpcode);
   const inputs = Array.from({ length: 4 }, () => useRef());
   const handleInput = (e, index) => {
     const { value } = e.target;
@@ -100,6 +102,8 @@ const OTPForm = () => {
   const handleSubmit = (e) => {
     e.preventDefault();
     console.log("Submitting OTP code:", otpCode);
+    console.log("Submitting OTP global:", globalotp);
+    
     
   };
 

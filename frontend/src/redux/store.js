@@ -4,6 +4,7 @@ import { apiSlice } from "./api/apiSlice";
 import authReducer from "./features/auth/authSlice";
 import darkmodeReducer from "./features/darkmodeSlice";
 import loginclickReducer from "./features/FormloginSlice";
+import otpReducer from "./features/auth/otpSlice";
 
 const store = configureStore({
     reducer: {
@@ -11,6 +12,7 @@ const store = configureStore({
        auth: authReducer, 
        darkmode: darkmodeReducer,
        loginclick: loginclickReducer,
+       otpcode:otpReducer,
 
     } ,
     middleware : (getDefaultMiddleware) => getDefaultMiddleware().concat(apiSlice.middleware), devTools:true,

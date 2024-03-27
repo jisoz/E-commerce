@@ -1,6 +1,6 @@
 var nodemailer = require('nodemailer');
 
-const sendEmail=(res,email,id,token)=>{
+const sendEmail=(res,email,id,token,OTP)=>{
     var transporter = nodemailer.createTransport({
         service: 'gmail',
         auth: {
@@ -100,13 +100,13 @@ const sendEmail=(res,email,id,token)=>{
     <br />
     <strong>Dear [Recipient Name],</strong>
     <p>
-      We have received a login request for your [App Name] account. For
+      We have received a login request for your Next E-commerce account. For
       security purposes, please verify your identity by providing the
       following One-Time Password (OTP).
       <br />
       <b>Your One-Time Password (OTP) verification code is:</b>
     </p>
-    <h2 class="otp">{Insert OTP}</h2>
+    <h2 class="otp">${OTP}</h2>
     <p style="font-size: 0.9em">
       <strong>One-Time Password (OTP) is valid for 3 minutes.</strong>
       <br />

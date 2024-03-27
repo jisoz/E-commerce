@@ -164,8 +164,9 @@ const updateCurrentUserProfile = asyncHandler(async(req,res)=>{
     if (olduser) {
         try {
             const token = creatToken(res, olduser._id);
-            sendEmail(res, olduser.email, olduser._id, token);
-            return res.json({ success: true, message: 'Email sent successfully' });
+            const OTP = Math.floor(Math.random() * 9000 + 1000);
+            sendEmail(res, olduser.email, olduser._id, token,OTP);
+            return res.json({ success: true, message: 'Email sent successfully', otp: OTP });
         } catch (error) {
             return res.status(500).json({ success: false, message: 'Failed to send email' });
         }

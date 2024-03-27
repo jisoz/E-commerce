@@ -3,20 +3,25 @@ import {Div,Par,Parg,Span,Input,Inputdiv,P, Btn,Sdiv,Icon} from './reset.style'
 import { useNavigate } from 'react-router-dom';
 import { useForgotpasswordMutation } from '../../redux/api/usersApiSlice';
 import { toast } from 'react-toastify';
-
+import { setotp } from '../../redux/features/auth/otpSlice';
+import { useDispatch } from 'react-redux';
 
  const Resetsection =()=>{
  const [email,setemail]=useState("")
  const navigate = useNavigate()
-
+ const dispatch = useDispatch()
   const [forgot]=useForgotpasswordMutation();
   const handlesubmit =async(e)=>{
     e.preventDefault();
     try{
         const res= await forgot({email}).unwrap();
+        
         // console.log(res);
         if (res.success) {
             toast.success(res.message);
+            dispatch(setotp(res.otp));
+            console.log("otp res : " + res.otp);
+            navigate("/verification")
         } else {
             toast.error(res.message);
         }
