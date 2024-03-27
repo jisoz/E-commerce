@@ -33,9 +33,18 @@ export const userApiSlice=apiSlice.injectEndpoints({
             })
         }
        ),
+       forgotpassword: builder.mutation(
+        {
+            query : (data)=> ({
+                    url: `${USERS_URL}/forgot-password`,
+                    method : 'POST' ,
+                    body : data
+            })
+        }
+       )
     })
 }
    
 )
 
-export const {useLoginMutation,useLogoutMutation,useRegisterMutation} = userApiSlice;
+export const {useLoginMutation,useLogoutMutation,useRegisterMutation,useForgotpasswordMutation} = userApiSlice;

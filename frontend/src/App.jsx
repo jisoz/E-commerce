@@ -7,6 +7,7 @@ import { ToastContainer } from 'react-toastify';
 import Register from './components/Register/register';
 import 'react-toastify/dist/ReactToastify.css';
 import Reset from './pages/Reset';
+import OTPForm from './components/otp/otp';
 
 const GlobalStyles = createGlobalStyle`
   body {
@@ -56,6 +57,9 @@ function App() {
       </Route>
 
       <Route path='/reset-password' element={<Reset />}>
+      
+      </Route>
+      <Route path='/verification' element={<OTPForm />}>
       
       </Route>
     

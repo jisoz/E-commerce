@@ -10,6 +10,6 @@ const PORT =3001;
 app.use(express.json());
 app.use(cookieParser());
 app.use("/api/users", userRoute);
-app.listen(PORT);
+app.listen(process.env.PORT);
 connect();
 
