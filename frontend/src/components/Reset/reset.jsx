@@ -4,6 +4,7 @@ import { useNavigate } from 'react-router-dom';
 import { useForgotpasswordMutation } from '../../redux/api/usersApiSlice';
 import { toast } from 'react-toastify';
 import { setotp } from '../../redux/features/auth/otpSlice';
+import { setverify } from '../../redux/features/auth/verifySlice';
 import { useDispatch } from 'react-redux';
 
  const Resetsection =()=>{
@@ -18,9 +19,11 @@ import { useDispatch } from 'react-redux';
         
         // console.log(res);
         if (res.success) {
+            const id = res.id;
+            const token = res.token;
             toast.success(res.message);
             dispatch(setotp(res.otp));
-            console.log("otp res : " + res.otp);
+            dispatch(setverify({id,token}));
             navigate("/verification")
         } else {
             toast.error(res.message);

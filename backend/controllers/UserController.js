@@ -1,5 +1,6 @@
 const asyncHandler = require("../middlewares/asyncHandler");
 const User = require("../models/userModel");
+const bcrypt = require('bcryptjs');
 const {hashPassword,comparePassword}  = require('../Utils/password');
 const jwt = require('jsonwebtoken');
 const creatToken = require('../Utils/token');
@@ -166,7 +167,7 @@ const updateCurrentUserProfile = asyncHandler(async(req,res)=>{
             const token = creatToken(res, olduser._id);
             const OTP = Math.floor(Math.random() * 9000 + 1000);
             sendEmail(res, olduser.email, olduser._id, token,OTP);
-            return res.json({ success: true, message: 'Email sent successfully', otp: OTP });
+            return res.json({ success: true, message: 'Email sent successfully', otp: OTP ,id : olduser._id,token: token });
         } catch (error) {
             return res.status(500).json({ success: false, message: 'Failed to send email' });
         }
@@ -175,36 +176,31 @@ const updateCurrentUserProfile = asyncHandler(async(req,res)=>{
     }
 });
 
-const resetpassword= asyncHandler(async(req,res)=>{
-  const {password} = req.body
-  const {id,token}= req.params
+const resetpassword = asyncHandler(async (req, res) => {
+  const { password } = req.body;
+ 
+const {id,token}=req.params
 
-  const user= await User.findById(id);
-  if(user){
-   jwt.verify(token , process.env.JWT_SECRET,async(err,_)=>{
-    if (err){
-      return res.json({error:"token not valid"})
-    }else{
-     
-      if (password){
-        const hashedpassword=  await hashPassword(password)
-          user.password = hashedpassword ;
-           await user.save();
-        } 
-      return res.json({success:"json valid"})
+// return res.json({password:password,token:token,id:id})
+ 
+  try {
+
+    const user = await User.findById(id);
+    if (!user) {
+      return res.json({ message: "User not found" });
     }
-    
-    
-    
-   });
-   
-   
-  }else{
-    return res.json({error: "User not found"});
-  }
-  
-  
 
-})
+    jwt.verify(token, process.env.JWT_SECRET);
+
+    const hashedpassword = await hashPassword(password);
+    user.password = hashedpassword;
+    await user.save();
+
+    return res.json({ message: "Password Updated" });
+  } catch (error) {
+    return res.json({ message: "An error occurred", error: error.message });
+  }
+});
+
 
 module.exports ={createUser,loginUser,loginoutUser, getCurrentUserProfile ,updateCurrentUserProfile,deleteUserById,getUserById,UpdateUserById,forgotpassword,resetpassword};

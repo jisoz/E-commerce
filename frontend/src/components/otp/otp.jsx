@@ -1,22 +1,32 @@
 import React, { useState, useRef } from "react";
 import { useSelector } from "react-redux";
+import { FaShieldAlt } from "react-icons/fa";
 import styled from "styled-components";
+import { useNavigate } from "react-router-dom";
 
 const Container = styled.div`
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  background: #4070f4;
+  background: #efae45;
   min-height: 100vh;
 `;
+const Icon =styled.div`
 
+display: flex;
+justify-content: center;
+align-items: center;
+padding-top: 10px;
+
+
+`
 const StyledForm = styled.form`
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  background: #fff;
+  background: black;
   padding: 30px 65px;
   border-radius: 12px;
   row-gap: 20px;
@@ -26,7 +36,7 @@ const StyledForm = styled.form`
 const Header = styled.header`
   height: 65px;
   width: 65px;
-  background: #4070f4;
+  background: #efae45;
   color: #fff;
   font-size: 2.5rem;
   border-radius: 50%;
@@ -34,7 +44,7 @@ const Header = styled.header`
 
 const H4 = styled.h4`
   font-size: 1.25rem;
-  color: #333;
+  color: #ffffffe6;
   font-weight: 500;
 `;
 
@@ -64,20 +74,23 @@ const Button = styled.button`
   cursor: pointer;
   border-radius: 6px;
   pointer-events: auto;
-  background: ${({ active }) => (active ? "#6e93f7" : "#ccc")};
+  background: ${({ active }) => (active ? "#e7b15a" : "#ccc")};
   transition: all 0.2s ease;
   &:hover {
-    background: ${({ active }) => (active ? "#0e4bf1" : "#ccc")};
+    background: ${({ active }) => (active ? "#eea530" : "#ccc")};
   }
 `;
 
 const OTPForm = () => {
   const [active, setActive] = useState(false);
   const [otpCode, setOtpCode] = useState("");
+  const navigate=useNavigate();
   const globalotp=useSelector((state)=>state.otpcode.otpcode);
+  const verifyid=useSelector((state)=>state.verify.id);
+  const verifytoken=useSelector((state)=>state.verify.token);
   const inputs = Array.from({ length: 4 }, () => useRef());
   const handleInput = (e, index) => {
-    const { value } = e.target;
+    const { value , key } = e.target;
     const allFilled = inputs.every((inputRef, i) => {
       if (i === index) return value && !isNaN(value) && value.length === 1;
       return inputRef.current.value && !isNaN(inputRef.current.value) && inputRef.current.value.length === 1;
@@ -88,21 +101,40 @@ const OTPForm = () => {
     } else {
       setActive(false);
     }
+    if (key === "Backspace" && index > 0 && !value) {
+        // If backspace is pressed and current input is empty, focus on the previous input
+        inputs[index - 1].current.focus();
+        return;
+      }
 
     if (value && !isNaN(value) && value.length === 1) {
       if (index < inputs.length - 1) {
         inputs[index + 1].current.focus();
       }
-    }
-
+    }else if (value === "") {
+        setActive(false);
+        if (index > 0) {
+          inputs[index - 1].current.focus();
+        }
+      }
+      if (key === "Backspace" && index === 0 && value === "") {
+        inputs.forEach((inputRef) => {
+          inputRef.current.value = "";
+        });
+      }
     const newOtpCode = inputs.map((inputRef) => inputRef.current.value).join("");
     setOtpCode(newOtpCode);
   };
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    console.log("Submitting OTP code:", otpCode);
-    console.log("Submitting OTP global:", globalotp);
+
+    if (parseInt(otpCode) === globalotp){
+        navigate(`/reset-password/${verifyid}/${verifytoken}`);
+        
+    }else{
+        console.log("not verified");
+    }
     
     
   };
@@ -111,7 +143,7 @@ const OTPForm = () => {
     <Container>
       <StyledForm onSubmit={handleSubmit}>
         <Header>
-          <i className="bx bxs-check-shield"></i>
+       <Icon><FaShieldAlt></FaShieldAlt></Icon> 
         </Header>
         <H4>Enter OTP Code</H4>
         <InputField>
